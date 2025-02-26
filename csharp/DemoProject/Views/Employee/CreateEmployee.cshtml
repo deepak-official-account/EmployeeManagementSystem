@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "CreateEmployee";
+}
+
+<h2>CreateEmployee</h2>
+
+<form method="post" asp-action="CreateEmployee" asp-controller="Employee">
+
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="Name" id="name" asp-for="Name" />
+    </div>
+
+    <div>
+        <label for="department">Department</label>
+        <input type="text" name="Department" id="department" asp-for="Department" />
+    </div>
+
+    <div>
+        <label for="salary">Salary</label>
+        <input type="number" name="Salary" id="salary" asp-for="Salary" />
+    </div>
+
+    <button type="reset">Clear</button>
+    <button type="submit">Save</button>
+</form>

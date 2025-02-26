@@ -1,0 +1,28 @@
+﻿@model DemoProject.Models.Employee
+
+<h2>Update Employee</h2>
+
+<form method="post" asp-controller="Employee" asp-action="Edit">
+
+    <input type="hidden" name="EmployeeId" value="@Model.EmployeeId" />
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="Name" id="name" value="@Model.Name" asp-for="Name" />
+    </div>
+
+    <div>
+        <label for="department">Department</label>
+        <input type="text" name="Department" value="@Model.Department" id="department" asp-for="Department" />
+    </div>
+
+    <div>
+        <label for="salary">Salary</label>
+        <input type="number" name="Salary" value="@Model.Salary" id="salary" asp-for="Salary" />
+    </div>
+
+    <button type="reset">Clear</button>
+    <button type="submit">Update</button>
+</form>
+
+@Html.ActionLink("Back to List", "GetAllEmployees")
