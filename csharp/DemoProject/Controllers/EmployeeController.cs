@@ -6,39 +6,39 @@ using System.Web;
 using System.Web.Mvc;
 using DemoProject.Models;
 
-
 namespace DemoProject.Controllers
 {
-
-
     public class EmployeeController : Controller
     {
-
-
+        // Create Employee - GET
         [HttpGet]
+        [Route("create")]
         public ActionResult CreateEmployee()
         {
             return View();
         }
 
-
+        // Create Employee - POST
         [HttpPost]
+        [Route("create/{employee}")]
         public ActionResult CreateEmployee(Employee employee)
         {
-            using (var context = new EmployeeContext())
+            if (ModelState.IsValid)
             {
-                context.Employees.Add(employee);
-                context.SaveChanges();
-
+                using (var context = new EmployeeContext())
+                {
+                    context.Employees.Add(employee);
+                    context.SaveChanges();
+                }
 
             }
-
 
             return RedirectToAction("GetAllEmployees");
         }
 
-
+        // Get All Employees
         [HttpGet]
+        [Route("employees")]
         public ActionResult GetAllEmployees()
         {
             List<Employee> employees;
@@ -50,9 +50,9 @@ namespace DemoProject.Controllers
             return View();
         }
 
-
-
+        // Delete Employee
         [HttpPost]
+        [Route("delete/{id}")]
         public ActionResult Delete(int id)
         {
             using (var context = new EmployeeContext())
@@ -68,46 +68,48 @@ namespace DemoProject.Controllers
             return RedirectToAction("GetAllEmployees");
         }
 
-
-
-
+        // Edit Employee - GET
         [HttpGet]
+        [Route("edit/{id}")]
         public ActionResult Edit(int id)
         {
             Employee emp;
             using (var context = new EmployeeContext())
             {
                 emp = context.Employees.Find(id);
-
             }
 
-            ViewBag.Employee = emp;
+            if (emp == null)
+            {
+                return HttpNotFound();
+            }
+
             return View(emp);
         }
 
-
-
+        // Edit Employee - POST
         [HttpPost]
-        public ActionResult Edit(Employee employee)
+        [Route("edit/{id}")]
+        public ActionResult Edit(int id, Employee employee)
         {
-            using (var context = new EmployeeContext())
+            if (ModelState.IsValid)
             {
-                var existingEmployee = context.Employees.Find(employee.EmployeeId);
-                if (existingEmployee != null)
+                using (var context = new EmployeeContext())
                 {
-                    existingEmployee.Name = employee.Name;
-                    existingEmployee.Department = employee.Department;
-                    existingEmployee.Salary = employee.Salary;
-                    context.SaveChanges();
+                    var existingEmployee = context.Employees.Find(id);
+                    if (existingEmployee != null)
+                    {
+                        existingEmployee.Name = employee.Name;
+                        existingEmployee.Department = employee.Department;
+                        existingEmployee.Salary = employee.Salary;
+                        context.SaveChanges();
+                    }
                 }
             }
 
+
+
             return RedirectToAction("GetAllEmployees");
         }
-
-
-
-
-
     }
 }

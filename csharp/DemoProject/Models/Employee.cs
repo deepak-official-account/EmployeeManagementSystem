@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-
+using System.ComponentModel.DataAnnotations;
 namespace DemoProject.Models
 {
 
 	public class Employee
 	{
 		public int EmployeeId { get; set; }
+		[Required(ErrorMessage="Please Enter your name")]
 		public string Name { get; set; }
 
-		public double Salary { get; set; }
-
-		public string Department { get; set; }
+        [Required(ErrorMessage ="Please Enter Salary")]
+		[Range(10000,100000)]
+        public double Salary { get; set; }
+        [Required(ErrorMessage ="Please Enter Department")]
+        public string Department { get; set; }
 
 		public Employee()
 		{
@@ -33,14 +36,6 @@ namespace DemoProject.Models
         public override string ToString()
         {
 			return $"EmployeeId:{EmployeeId}, Name: {Name}, Department: {Department}, Salary:{Salary}";
-        }
-
-
-        public class EmployeeDBContext : DbContext
-		{
-			public DbSet<Employee> Employees { get; set; }
-
-
-		}
+        }       
 	}
 }

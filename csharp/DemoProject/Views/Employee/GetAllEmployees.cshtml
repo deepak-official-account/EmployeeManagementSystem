@@ -1,12 +1,12 @@
 ﻿@using DemoProject.Models
 @{
-    ViewBag.Title = "GetAllEmployees";
+    ViewBag.Title = "Get All Employees";
 }
 
 <h2>Get All Employees</h2>
 
 <table border="1" cellpadding="5" cellspacing="0">
-    @Html.ActionLink("AddEmployee", "CreateEmployee")
+    @Html.ActionLink("Add Employee", "CreateEmployee", null, new { @class = "btn btn-primary" })
     <thead>
         <tr>
             <th style="text-align: center;">EmployeeId</th>
@@ -25,14 +25,11 @@
                 <td style="text-align: right;">@emp.Salary</td>
                 <td>@emp.Department</td>
                 <td>
-                    <button> @Html.ActionLink("Edit", "Edit", new { id = @emp.EmployeeId })</button>
+                    @Html.ActionLink("Edit", "Edit", new { id = emp.EmployeeId }) |
                     @using (Html.BeginForm("Delete", "Employee", new { id = emp.EmployeeId }, FormMethod.Post))
                     {
-
                         <button type="submit">Delete</button>
                     }
-
-
                 </td>
             </tr>
         }
