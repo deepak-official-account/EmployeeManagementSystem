@@ -1,4 +1,4 @@
-﻿@using DemoProject.Models
+﻿﻿@using DemoProject.Models
 @{
     ViewBag.Title = "Get All Employees";
 }
@@ -13,6 +13,7 @@
             <th style="text-align: center;">Name</th>
             <th style="text-align: center;">Salary</th>
             <th style="text-align: center;">Department</th>
+            <th style="text-align: center;">Email</th>
             <th style="text-align: center;">Actions</th>
         </tr>
     </thead>
@@ -24,6 +25,8 @@
                 <td>@emp.Name</td>
                 <td style="text-align: right;">@emp.Salary</td>
                 <td>@emp.Department</td>
+                <td style="text-align: right;">@emp.Email</td>
+           
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = emp.EmployeeId }) |
                     @using (Html.BeginForm("Delete", "Employee", new { id = emp.EmployeeId }, FormMethod.Post))

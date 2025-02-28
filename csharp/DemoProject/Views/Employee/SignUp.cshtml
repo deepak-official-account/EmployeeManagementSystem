@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<h2>SignUp</h2>
+
+<h2>   @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h2>
+<form method="post" asp-action="SignUp" asp-controller="Employee">
+    <div>
+        <label for="Name">Name</label>
+        <input type="text" name="Name" asp-for="Name" />
+    </div>
+
+  
+    <div>
+        <label for="Email">Email</label>
+        <input type="email" name="Email" id="Email" asp-for="Email" />
+    </div>
+
+    <div>
+        <label for="Password">Password</label>
+        <input type="password" name="Password" id="Password" asp-for="Password" />
+    </div>
+
+
+
+    <button type="reset">Clear</button>
+    <button type="submit">Sign Up</button>
+</form>
+
+@Html.ActionLink("SignIn Here", "Login")

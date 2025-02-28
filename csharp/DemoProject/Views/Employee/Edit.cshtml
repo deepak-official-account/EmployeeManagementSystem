@@ -1,4 +1,4 @@
-﻿@model DemoProject.Models.Employee
+﻿﻿@model DemoProject.Models.Employee
 
 <h2>Update Employee</h2>
 
@@ -15,7 +15,10 @@
         <label for="department">Department</label>
         <input type="text" name="Department" value="@Model.Department" id="department" asp-for="Department" />
     </div>
-
+    <div>
+        <label for="Email">Department</label>
+        <input type="email" name="Email" value="@Model.Email"  asp-for="Email" />
+    </div>
     <div>
         <label for="salary">Salary</label>
         <input type="number" name="Salary" value="@Model.Salary" id="salary" asp-for="Salary" />

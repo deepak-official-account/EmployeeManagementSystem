@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DemoProject.Models.EmployeeContext";
         }
 
         protected override void Seed(DemoProject.Models.EmployeeContext context)
