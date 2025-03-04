@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Components\EmployeeViewComponent.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="enums\UserRole.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -136,29 +137,13 @@
     <Compile Include="Migrations\202502280607551_InitialCreate.Designer.cs">
       <DependentUpon>202502280607551_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202502280646543_UserDbContext.cs" />
-    <Compile Include="Migrations\202502280646543_UserDbContext.Designer.cs">
-      <DependentUpon>202502280646543_UserDbContext.cs</DependentUpon>
+    <Compile Include="Migrations\202503030538259_UserDbContext.cs" />
+    <Compile Include="Migrations\202503030538259_UserDbContext.Designer.cs">
+      <DependentUpon>202503030538259_UserDbContext.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202502280648046_EmployeeDbContext.cs" />
-    <Compile Include="Migrations\202502280648046_EmployeeDbContext.Designer.cs">
-      <DependentUpon>202502280648046_EmployeeDbContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202502280704279_EmployeeDbContext1.cs" />
-    <Compile Include="Migrations\202502280704279_EmployeeDbContext1.Designer.cs">
-      <DependentUpon>202502280704279_EmployeeDbContext1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202502280712008_EmployeeDbContext2.cs" />
-    <Compile Include="Migrations\202502280712008_EmployeeDbContext2.Designer.cs">
-      <DependentUpon>202502280712008_EmployeeDbContext2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202502280713174_UserDbContext1.cs" />
-    <Compile Include="Migrations\202502280713174_UserDbContext1.Designer.cs">
-      <DependentUpon>202502280713174_UserDbContext1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202502280714342_EmployeeDbContext3.cs" />
-    <Compile Include="Migrations\202502280714342_EmployeeDbContext3.Designer.cs">
-      <DependentUpon>202502280714342_EmployeeDbContext3.cs</DependentUpon>
+    <Compile Include="Migrations\202503030544432_EmployeeDbContext.cs" />
+    <Compile Include="Migrations\202503030544432_EmployeeDbContext.Designer.cs">
+      <DependentUpon>202503030544432_EmployeeDbContext.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
@@ -259,23 +244,11 @@
     <EmbeddedResource Include="Migrations\202502280607551_InitialCreate.resx">
       <DependentUpon>202502280607551_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202502280646543_UserDbContext.resx">
-      <DependentUpon>202502280646543_UserDbContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202503030538259_UserDbContext.resx">
+      <DependentUpon>202503030538259_UserDbContext.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202502280648046_EmployeeDbContext.resx">
-      <DependentUpon>202502280648046_EmployeeDbContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202502280704279_EmployeeDbContext1.resx">
-      <DependentUpon>202502280704279_EmployeeDbContext1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202502280712008_EmployeeDbContext2.resx">
-      <DependentUpon>202502280712008_EmployeeDbContext2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202502280713174_UserDbContext1.resx">
-      <DependentUpon>202502280713174_UserDbContext1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202502280714342_EmployeeDbContext3.resx">
-      <DependentUpon>202502280714342_EmployeeDbContext3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202503030544432_EmployeeDbContext.resx">
+      <DependentUpon>202503030544432_EmployeeDbContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

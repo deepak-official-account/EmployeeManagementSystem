@@ -5,11 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using DemoProject.enums;
 using DemoProject.Models;
 
 namespace DemoProject.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     public class EmployeeController : Controller
     {
         [AllowAnonymous]
@@ -22,24 +23,32 @@ namespace DemoProject.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("login")]
-        public ActionResult Login([Bind(Include ="Email,Password")] User user)
+        public ActionResult Login([Bind(Include = "Email,Password")] User user)
         {
-            using (var context=new UserContext())
+            using (var context = new UserContext())
             {
-                bool IsValidEmployee = context.Users.Any(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password));
-                if (IsValidEmployee)
-                {
-              
-                    FormsAuthentication.SetAuthCookie(user.Email, false);
-                    return RedirectToAction("GetAllEmployees");
- 
+                var validUser = context.Users
+                    .FirstOrDefault(u => u.Email.Equals(user.Email) && u.Password.Equals(user.Password));
 
+                if (validUser != null)
+                {
+                    //FormsAuthentication.SetAuthCookie(user.Email, false);
+                    Session["UserRole"] = validUser.userRole.ToString();
+
+                    //FormsAuthentication.SetAuthCookie(user.Email, false);
+
+                    var authTicket = new FormsAuthenticationTicket(1, user.Email, DateTime.Now, DateTime.Now.AddMinutes(20), false, validUser.userRole.ToString());
+                    string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                    var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    HttpContext.Response.Cookies.Add(authCookie);
+                    return RedirectToAction("GetAllEmployees");
                 }
-                ModelState.AddModelError("", "invalid Username or Password");
-              
+
+                ModelState.AddModelError("", "Invalid username or password.");
             }
             return View();
         }
+
         [AllowAnonymous]
         [Route("signup")]
         public ActionResult SignUp()
@@ -73,6 +82,8 @@ namespace DemoProject.Controllers
         }
 
         // Create Employee - GET
+        [Authorize(Roles="Admin")]
+        //[OverrideAuthorization]
         [HttpGet]
         [Route("create")]
         public ActionResult CreateEmployee()
@@ -81,6 +92,7 @@ namespace DemoProject.Controllers
         }
 
         // Create Employee - POST
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("create")]
         public ActionResult CreateEmployee(Employee employee)
@@ -102,9 +114,9 @@ namespace DemoProject.Controllers
         }
 
         // Get All Employees
+ 
         [HttpGet]
         [Route("employees")]
-        [AllowAnonymous]
         public ActionResult GetAllEmployees()
         {
             if (User.Identity.IsAuthenticated)
@@ -126,8 +138,9 @@ namespace DemoProject.Controllers
 
 
         // Delete Employee
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        [Route("delete/{id}")]
+        [Route("delete/{id:int}")]
         public ActionResult Delete(int id)
         {
             if (User.Identity.IsAuthenticated)
@@ -148,8 +161,9 @@ namespace DemoProject.Controllers
         }
 
         // Edit Employee - GET
+        [Authorize(Roles="Admin")]
         [HttpGet]
-        [Route("edit/{id}")]
+        [Route("edit/{id:int}")]
         public ActionResult Edit(int id)
         {
             Employee emp;
@@ -167,6 +181,7 @@ namespace DemoProject.Controllers
         }
 
         // Edit Employee - POST
+        [Authorize(Roles="Admin")]
         [HttpPost]
         [Route("edit/{id}")]
         public ActionResult Edit(int id, Employee employee)

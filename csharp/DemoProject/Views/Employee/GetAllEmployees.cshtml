@@ -1,12 +1,17 @@
 ﻿﻿@using DemoProject.Models
 @{
     ViewBag.Title = "Get All Employees";
+    var UserRole = Session["UserRole"];
 }
 
 <h2>Get All Employees</h2>
 
+
 <table border="1" cellpadding="5" cellspacing="0">
+    @if (UserRole.Equals("Admin")){
+
     @Html.ActionLink("Add Employee", "CreateEmployee", null, new { @class = "btn btn-primary" })
+    }
     <thead>
         <tr>
             <th style="text-align: center;">EmployeeId</th>
@@ -26,7 +31,7 @@
                 <td style="text-align: right;">@emp.Salary</td>
                 <td>@emp.Department</td>
                 <td style="text-align: right;">@emp.Email</td>
-           
+
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = emp.EmployeeId }) |
                     @using (Html.BeginForm("Delete", "Employee", new { id = emp.EmployeeId }, FormMethod.Post))
@@ -38,3 +43,6 @@
         }
     </tbody>
 </table>
+<div>
+    @Html.ActionLink("Logout", "Logout")
+</div>

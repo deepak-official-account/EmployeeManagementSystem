@@ -1,9 +1,12 @@
 ﻿﻿@{
     ViewBag.Title = "Create Employee";
+    var UserRole = Session["UserRole"];
 }
 
 <h2>Create Employee</h2>
+@*@Html.Action("Logout", "Logout")*@
 
+@*@if (UserRole.Equals("Admin")){*@
 <form method="post" asp-action="CreateEmployee" asp-controller="Employee">
     <div>
         <label for="name">Name</label>
@@ -27,3 +30,6 @@
     <button type="reset">Clear</button>
     <button type="submit">Save</button>
 </form>
+<div>
+    @Html.ActionLink("Logout", "Logout")
+</div>

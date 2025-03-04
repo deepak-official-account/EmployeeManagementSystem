@@ -32,8 +32,8 @@ namespace DemoProject.Models
         }
         public Employee(string Name, string department, double Salary)
         {
-            Random random = new Random();
-            this.EmployeeId = random.Next(10000);
+           
+            this.EmployeeId = new Random().Next(1000, 9999);
             this.Name = Name;
             this.Department = department;
             this.Salary = Salary;

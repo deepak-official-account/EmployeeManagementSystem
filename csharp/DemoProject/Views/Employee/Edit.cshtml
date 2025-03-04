@@ -1,6 +1,11 @@
 ﻿﻿@model DemoProject.Models.Employee
-
+@{
+    var UserRole = Session["UserRole"];
+}
 <h2>Update Employee</h2>
+
+
+@if (UserRole.Equals("Admin")){
 
 <form method="post" asp-controller="Employee" asp-action="Edit" asp-route-id="@Model.EmployeeId">
 
@@ -17,7 +22,7 @@
     </div>
     <div>
         <label for="Email">Department</label>
-        <input type="email" name="Email" value="@Model.Email"  asp-for="Email" />
+        <input type="email" name="Email" value="@Model.Email" asp-for="Email" />
     </div>
     <div>
         <label for="salary">Salary</label>
@@ -27,5 +32,11 @@
     <button type="reset">Clear</button>
     <button type="submit">Update</button>
 </form>
+            }else{
+<h3>You are Not Authorized to access this page</h3>
+}
+<div>
+    @Html.ActionLink("Logout", "Logout")
+</div>
 
 @Html.ActionLink("Back to List", "GetAllEmployees")

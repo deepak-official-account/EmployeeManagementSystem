@@ -12,7 +12,7 @@
         <input type="text" name="Name" asp-for="Name" />
     </div>
 
-  
+
     <div>
         <label for="Email">Email</label>
         <input type="email" name="Email" id="Email" asp-for="Email" />
@@ -21,6 +21,16 @@
     <div>
         <label for="Password">Password</label>
         <input type="password" name="Password" id="Password" asp-for="Password" />
+    </div>
+
+    <div>
+        <label for="UserRole">UserRole</label>
+
+        <select name="UserRole" id="UserRole" asp-for="UserRole">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+        
+        </select>
     </div>
 
 
